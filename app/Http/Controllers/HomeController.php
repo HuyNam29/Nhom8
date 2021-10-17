@@ -30,6 +30,7 @@ class HomeController extends Controller
                     ->where('follows.user_id',\Auth::id())
                     ->where('posts.p_type','profile')
                     ->select('posts.*')
+                    ->take(5)
                     ->get(); 
         $now =Carbon::now();
         

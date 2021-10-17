@@ -3,9 +3,6 @@
 use Illuminate\Support\Facades\Route;
  
 Auth::routes();     
-include('route-admin.php'); 
-
-
 Route::get('/','App\Http\Controllers\HomeController@index')->name('home'); 
  Route::group(['namespace' =>'App\Http\Controllers\Auth','prefix'=>'account'],function(){
     Route::get('register','RegisterController@getFormRegister')->name('get.register'); // đăng ký
@@ -27,39 +24,7 @@ Route::get('/','App\Http\Controllers\HomeController@index')->name('home');
     Route::get('logout','LoginController@getLogout')->name('get.logout'); // đăng xuất
 
 });
-//chat
-Route::group(['namespace'=>'App\Http\Controllers\Personal'], function () {   
-    Route::get('/explore','ExploreController@index')->name('explore'); 
-    Route::get('/direct','DirectController@index')->name('direct');   
-    //tìm kiếm
-    Route::get('/searchmess','DirectController@searchmess')->name('searchmess'); 
-    //lấy người dùng tạo group chat 
-    Route::post('/direct/a/','DirectController@create_chat_group')->name('create_chat_group'); 
-    //chat group
-    Route::get('/direct/t/{room}', 'DirectController@index_chat_group')->name('chat.group.show');
-    Route::post('/group_chat/getGroupChat/{room}', 'DirectController@getGroupChat');
-    Route::post('/group_chat/sendChat', 'DirectController@sendGroupChat');
-   
-    //chat private
-    Route::get('/direct/{id}', 'DirectController@show')->name('chat.show');
-    Route::post('/chat/getChat/{id}', 'DirectController@getChat');
-    Route::post('/chat/sendChat', 'DirectController@sendChat');
-    //call video
-    Route::get('/video',  'DirectController@video')->name('chat.video');
-    // Route::post('/pusher/auth', 'App\Http\Controllers\HomeController@authenticate'); 
-   
-}); 
-//home page
-Route::group(['namespace'=>'App\Http\Controllers\Page'], function () { 
-    //follow user
-    Route::get('/incre-view','HomePageController@incre_view')->name('post.increview'); 
-    Route::get('/follow','HomePageController@follow'); 
-    Route::post('/upload_user','HomePageController@uploadProfile')->name('upload.user'); 
-    Route::get('/delete','HomePageController@deleteProfile')->name('post.delete');
-    Route::get('/{user}','HomePageController@index')->name('get.home-page');   
-    Route::post('/upload','HomePageController@saveProfile')->name('post.profile'); 
-    
-});
+ 
 
 Route::get('/auth/redirect/{provider}', 'App\Http\Controllers\SocialController@redirect');
 Route::get('/callback/{provider}', 'App\Http\Controllers\SocialController@callback');
@@ -84,10 +49,4 @@ Route::group(['namespace'=>'App\Http\Controllers\Activate'], function () {
 });
 //chi tiết bài viết
 Route::get('/p/{slug}','App\Http\Controllers\Account\PostController@view_post')->name('post.view'); 
-Route::group(['prefix'=>'accounts','namespace'=>'App\Http\Controllers\Account'], function () {   
-    Route::get('/edit','ProfileController@edit')->name('profile.edit');  
-    Route::post('/edit/store','ProfileController@store')->name('profile.store');    
-    Route::get('/edit/password','ProfileController@password')->name('password.edit'); 
-    Route::post('/edit/password/store','ProfileController@store_password')->name('password.store');  
-
-});
+ 

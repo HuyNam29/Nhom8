@@ -64,15 +64,10 @@
                         </a>
                      </li>
                      <li class="d-inline-block  position-relative">
-                        <a href="{{ url('/direct') }}">
+                        <a href="#">
                         <img class="mr-20 rounded-circle w-30" src="{{ asset($direct) }}" >
                         </a>
                      </li>
-                     <!-- <li class="d-inline-block  position-relative">
-                        <a href="{{ url('/explore') }}">
-                        <img class="mr-20 rounded-circle w-30" src="{{ asset($explore)  }}" >
-                        </a>  
-                     </li> -->
                      <notification v-bind:notifications="notifications"  v-bind:notification_readed="notification_readed"></notification>
                      <script>
                         $(function(){
@@ -92,7 +87,7 @@
                         <img src="{{ pare_url_file(auth()->user()->avatar,'user') }}" class="mr-20 rounded-circle w-30 avatar_user_uploaded" style="object-fit:cover">
                         </a>
                         <ul class="notification set-user-width d-none">
-                           <a href="{{ route('get.home-page',auth()->user()->user) }}">
+                           <a href="#">
                               <li>
                                  <i class="fa fa-user-circle"></i>
                                  <span>{{ __('translate.Profile')}}</span>
@@ -104,7 +99,7 @@
                                  <span>{{ __('translate.saved')}}</span>
                               </li>
                            </a>
-                           <a href="{{ route('profile.edit') }}">
+                           <a href="#">
                               <li>
                                  <i class="fa fa-lg fa-sun-o"></i>
                                  <span>{{ __('translate.Settings')}}</span>
